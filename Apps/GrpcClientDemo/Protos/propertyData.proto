@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcServiceDemo";
+
+package propertyData;
+
+// The propertyData information service definition.
+service PropertyDataService {
+  // Get propertyData information: Unary RPCs
+  rpc GetPropertyData (google.protobuf.Empty) returns (PropertyDataReply);
+
+  // Get propertyData information: Unary RPCs
+  rpc GetPropertyDataForDate (google.protobuf.Timestamp) returns (PropertyDataReply);
+
+  // Get propertyData information: Server Streaming RPCs
+  rpc GetPropertyDataStream (google.protobuf.Empty) returns (stream PropertyData);
+
+  // Get propertyData information: Client Streaming RPCs
+  rpc GetPropertyDataClientStream (stream StreamMessage) returns (PropertyDataReply);
+
+  // Get propertyData information: Bidirectional streaming RPCs
+  rpc GetPropertyDataDuplexStream (stream StreamMessage) returns (stream PropertyData);
+}
+
+// The response message containing the propertyData information.
+message PropertyDataReply {
+	repeated  PropertyData Result = 1;
+}
+
+message PropertyData {
+	google.protobuf.Timestamp Date = 1;
+	
+	int32 TemperatureC = 2;
+	
+	int32 TemperatureF = 3;
+	
+	string Summary = 4;
+}
+
+message StreamMessage{
+	int32 index = 1;
+}

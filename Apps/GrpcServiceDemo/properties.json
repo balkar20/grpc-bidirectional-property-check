@@ -1,0 +1,33 @@
+{
+    "Name": "my-camera",
+    "MainProperties": [
+      {
+        "Name": "Focus",
+        "PropertyName": "Focus",
+        "PropertyGroup": "FocusControl"
+      },
+      {
+        "Name": "Diaphragm",
+        "PropertyName": "Diaphragm",
+        "PropertyGroup": "LensControl"
+      },
+      {
+        "Name": "Gain",
+        "PropertyName": "Gain",
+        "PropertyGroup": "AnalogControl"
+      },
+      {
+        "Name": "Exposure",
+        "PropertyName": "ExposureT",
+        "PropertyGroup": "AcquisitionControl",
+        "RelativeMin": 200,
+        "RelativeMax": 100000,
+        "CorrectionValue": 0.5
+      }
+    ],
+    "DefaultPresets": {
+      "PropertyName": "ExposureAuto",
+      "PropertyGroup": "AcquisitionControl",
+      "Value": "Off"
+    }
+  }

@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option csharp_namespace = "PropertyObserver";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+package greet;
+
+// The properties service definition.
+service PropertyObserver {
+  // Sends a properties
+  // rpc CheckProperties (CheckPropertiesRequest) returns (CheckPropertiesReply);
+  rpc CheckProperties (CheckPropertiesRequest) returns (CheckPropertiesReply);
+
+    // Get properties: Unary RPCs
+    rpc GetPropertiesForType (google.protobuf.StringValue) returns (CheckPropertiesReply);
+
+    // Get properties: Server Streaming RPCs
+    rpc GetPropertiesStream (google.protobuf.Empty) returns (stream PropertyData);
+  
+    // Get properties: Client Streaming RPCs
+    rpc GetPropertiesClientStream (stream StreamMessage) returns (CheckPropertiesReply);
+  
+    // Get properties: Bidirectional streaming RPCs
+    rpc GetPropertiesDuplexStream (stream StreamMessage) returns (stream PropertyData);
+}
+
+// The request message 
+message CheckPropertiesRequest {
+  int32  properyId = 1;
+  string properyName = 2;
+  string properyType = 3;
+  string properyValue = 4;
+}
+
+// The response message 
+message CheckPropertiesReply {
+  int32  properyId = 1;
+  string properyName = 2;
+  string properyType = 3;
+  string properyValue = 4;
+}
+
+// The data message
+message PropertyData {
+  int32  properyId = 1;
+  string properyName = 2;
+  string properyType = 3;
+  string properyValue = 4;
+}
+
+message StreamMessage{
+	string index = 1;
+}
